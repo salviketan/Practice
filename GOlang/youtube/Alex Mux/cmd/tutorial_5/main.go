@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -25,6 +26,20 @@ func main() {
 	fmt.Printf("The length of 'myRune' is %v\n", len(myRune))
 
 	var myRune2 = 'a'
-	fmt.Printf("myRune2 = %v", myRune2)
+	fmt.Printf("myRune2 = %v\n", myRune2)
 
+	var strSlice = []string{"c", "o", "n", "c", "a", "t", "e"}
+	catStr := ""
+	for i := range strSlice {
+		catStr += strSlice[i]
+	}
+	fmt.Println(catStr)
+
+	var strSlice2 = []string{"strig", " ", "b", "u", "i", "l", "d", "e", "r"}
+	var strBuilder strings.Builder
+	for i := range strSlice2 {
+		strBuilder.WriteString(strSlice2[i])
+	}
+	var catStr2 string = strBuilder.String()
+	fmt.Println(catStr2)
 }
