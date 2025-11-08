@@ -28,16 +28,16 @@ func (e electricEngine) milesLeft() uint8 {
 	return e.kwh * e.mpkwh
 }
 
-type engine interface {
-	milesLeft() uint8
-}
-
 func canMakeIt(e engine, miles uint8) {
 	if miles <= e.milesLeft() {
 		fmt.Println("You can make it")
 	} else {
 		fmt.Println("Can not make refill")
 	}
+}
+
+type engine interface {
+	milesLeft() uint8
 }
 
 func main() {
