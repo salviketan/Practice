@@ -21,4 +21,6 @@ func main() {
 	sliceCopy[2] = 4
 	fmt.Printf("slice: %v, sliceCopy: %v", slice, sliceCopy)
 
+	fmt.Println("End")
+
 }
