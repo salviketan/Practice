@@ -5,7 +5,6 @@ import "fmt"
 func main() {
 	var p *int32 = new(int32)
 	var i int32 = 7
-
 	fmt.Printf("The value p points to is: %v\n", *p)
 	fmt.Printf("The value of i is: %v , value inside p: %v\n", i, p)
 
