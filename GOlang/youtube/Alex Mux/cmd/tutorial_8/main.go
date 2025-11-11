@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// var m = sync.Mutex{}
+var m = sync.RWMutex{}
 var wg = sync.WaitGroup{}
 var dbData = []string{"id1", "id2", "id3", "id4", "id5"}
 
@@ -20,15 +20,26 @@ func main() {
 	}
 	wg.Wait()
 	fmt.Printf("\nTotal execution time: %v", time.Since(t0))
-	fmt.Println(result)
+	fmt.Printf("\nThe results are %v", result)
 }
 
 func dbCall(i int) {
 	var delay float32 = 2000
 	time.Sleep(time.Duration(delay) * time.Millisecond)
-	// m.Lock()
 	fmt.Println("The result from the database is: ", dbData[i])
-	result = append(result, dbData[i])
-	// m.Unlock()
+	save(dbData[i])
+	log()
 	wg.Done()
+}
+
+func save(i string) {
+	m.Lock()
+	result = append(result, i)
+	m.Unlock()
+}
+
+func log() {
+	m.RLock()
+	fmt.Printf("\nThe results are %v", result)
+	m.RUnlock()
 }
