@@ -10,7 +10,7 @@ var m = sync.RWMutex{}
 var wg = sync.WaitGroup{}
 var dbData = []string{"id1", "id2", "id3", "id4", "id5"}
 
-var result = []string{}
+var results = []string{}
 
 func main() {
 	t0 := time.Now()
@@ -20,26 +20,26 @@ func main() {
 	}
 	wg.Wait()
 	fmt.Printf("\nTotal execution time: %v", time.Since(t0))
-	fmt.Printf("\nThe results are %v", result)
+	fmt.Printf("\nThe results are %v", results)
 }
 
 func dbCall(i int) {
 	var delay float32 = 2000
 	time.Sleep(time.Duration(delay) * time.Millisecond)
-	fmt.Println("The result from the database is: ", dbData[i])
+	fmt.Println("\nThe results from the database is: ", dbData[i])
 	save(dbData[i])
 	log()
 	wg.Done()
 }
 
-func save(i string) {
+func save(result string) {
 	m.Lock()
-	result = append(result, i)
+	results = append(results, result)
 	m.Unlock()
 }
 
 func log() {
 	m.RLock()
-	fmt.Printf("\nThe results are %v", result)
+	fmt.Printf("\nThe results are %v", results)
 	m.RUnlock()
 }
