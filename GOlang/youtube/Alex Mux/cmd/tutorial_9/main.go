@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -23,6 +24,34 @@ func main() {
 	unbufferChannel2()
 	fmt.Println("The buffer channel")
 	bufferChannel()
+
+	fmt.Println("some what realistic")
+	someWhatRealisticFunc()
+}
+
+func someWhatRealisticFunc() {
+	var MAX_CHICKEN_PRICE float32 = 5.0
+	var chickenChannel = make(chan string)
+	var website = []string{"Dmart.com", "walmart.com", "wholefoods.com"}
+	for i := range website {
+		go checkChickenPrice(website[i], chickenChannel, MAX_CHICKEN_PRICE)
+	}
+	sendMessage(chickenChannel)
+
+}
+
+func checkChickenPrice(website string, chickenChannel chan string, MAX_CHICKEN_PRICE float32) {
+	for {
+		time.Sleep(time.Second * 1)
+		var chickenPrice = rand.Float32() * 20
+		if MAX_CHICKEN_PRICE <= chickenPrice {
+			chickenChannel <- website
+		}
+	}
+}
+
+func sendMessage(chickenChannel chan string) {
+	fmt.Printf("\nFound a deal on chicken at %s", <-chickenChannel)
 }
 
 func unbufferChannel1() {
@@ -69,5 +98,3 @@ func bufferProcess(bc chan int) {
 	}
 	fmt.Println("Exiting process")
 }
-
-func someWhatRealisticFunc() {}
