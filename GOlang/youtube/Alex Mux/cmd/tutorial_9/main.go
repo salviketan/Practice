@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // Channels:- Hold Data, Thread Safe, Listen for Data/
 
@@ -14,12 +17,57 @@ func deadlockOutput_main() {
 
 // This is how channel should be used.
 func main() {
-	var c = make(chan int)
-	go process(c)
-	fmt.Println(c)
-	fmt.Println(<-c)
+	fmt.Println("The unbuffer channel 1")
+	unbufferChannel1()
+	fmt.Println("The unbuffer channel 2")
+	unbufferChannel2()
+	fmt.Println("The buffer channel")
+	bufferChannel()
 }
 
-func process(c chan int) {
-	c <- 123
+func unbufferChannel1() {
+	var uc1 = make(chan int)
+	go unbufferProcess1(uc1)
+	println(<-uc1)
+
 }
+
+func unbufferProcess1(uc1 chan int) {
+	uc1 <- 123
+}
+
+func unbufferChannel2() {
+	var uc2 = make(chan int)
+	go unbufferProcess2(uc2)
+	for i := range uc2 {
+		println(i)
+	}
+
+}
+
+func unbufferProcess2(uc2 chan int) {
+	defer close(uc2)
+	for i := 0; i <= 5; i++ {
+		uc2 <- i
+	}
+}
+
+func bufferChannel() {
+	var bc = make(chan int, 5)
+	go bufferProcess(bc)
+	for i := range bc {
+		time.Sleep(time.Second * 1)
+		println(i)
+	}
+
+}
+
+func bufferProcess(bc chan int) {
+	defer close(bc)
+	for i := 0; i <= 5; i++ {
+		bc <- i
+	}
+	fmt.Println("Exiting process")
+}
+
+func someWhatRealisticFunc() {}
