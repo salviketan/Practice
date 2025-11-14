@@ -30,13 +30,18 @@ func main() {
 }
 
 func someWhatRealisticFunc() {
-	var MAX_CHICKEN_PRICE float32 = 5.0
+	var MAX_CHICKEN_PRICE float32 = 5
+	var MAX_TOFU_PRICE float32 = 4
+
 	var chickenChannel = make(chan string)
+	var tofuChannel = make(chan string)
+
 	var website = []string{"Dmart.com", "walmart.com", "wholefoods.com"}
 	for i := range website {
 		go checkChickenPrice(website[i], chickenChannel, MAX_CHICKEN_PRICE)
+		go checkTofuPrice(website[i], tofuChannel, MAX_TOFU_PRICE)
 	}
-	sendMessage(chickenChannel)
+	sendMessage(chickenChannel, tofuChannel)
 
 }
 
@@ -46,12 +51,29 @@ func checkChickenPrice(website string, chickenChannel chan string, MAX_CHICKEN_P
 		var chickenPrice = rand.Float32() * 20
 		if MAX_CHICKEN_PRICE <= chickenPrice {
 			chickenChannel <- website
+			break
 		}
 	}
 }
 
-func sendMessage(chickenChannel chan string) {
-	fmt.Printf("\nFound a deal on chicken at %s", <-chickenChannel)
+func checkTofuPrice(website string, tofuChannel chan string, MAX_TOFU_PRICE float32) {
+	for {
+		time.Sleep(time.Second * 1)
+		var tofuPrice = rand.Float32() * 20
+		if tofuPrice < MAX_TOFU_PRICE {
+			tofuChannel <- website
+			break
+		}
+	}
+}
+
+func sendMessage(chickenChannel chan string, tofuChannel chan string) {
+	select {
+	case website := <-chickenChannel:
+		fmt.Printf("\nText Send: Found a deal on chicken at %s", website)
+	case website := <-tofuChannel:
+		fmt.Printf("\nEmail Sent: Found a deal on tofu at %s", website)
+	}
 }
 
 func unbufferChannel1() {
