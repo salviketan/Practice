@@ -12,14 +12,21 @@ func main() {
 	fmt.Println(sumSlice(float32Slice))
 	fmt.Println(sumSlice(float64Slice))
 
-	fmt.Println(sumSlice2(intSlice))
+	fmt.Println(isEmpty(intSlice))
 
-	var a petrolEngine = petrolEngine{kmph: 5, gallon: 2}
+	var gasCar = car[gasEngine]{
+		make:   "Jeep",
+		model:  "Rubicon",
+		engine: gasEngine{kmph: 5, gallon: 10},
+	}
+	fmt.Println(gasCar)
 
-	fmt.Printf("%v", a.gallon)
-
-	engine[petrolEngine](a)
-
+	var electricCar = car[electricEngine]{
+		make:   "Tesla",
+		model:  "Model 3",
+		engine: electricEngine{kwph: 6, mpkwh: 12},
+	}
+	fmt.Println(electricCar)
 }
 
 func sumSlice[T int | float32 | float64](slice []T) T {
@@ -30,20 +37,22 @@ func sumSlice[T int | float32 | float64](slice []T) T {
 	return sum
 }
 
-func isEmpty[T any](slice []T) bool {
-	retrun len(slice) == 0
+func isEmpty[T any](s []T) bool {
+	return len(s) == 0
 }
 
-type petrolEngine struct {
-	kmph   int16
-	gallon int16
+type gasEngine struct {
+	kmph   float32
+	gallon float32
 }
 
-type diselEngine struct {
-	kmph   int16
-	gallon int16
+type electricEngine struct {
+	kwph  float32
+	mpkwh float32
 }
 
-func engine[e petrolEngine | diselEngine](a e) {
-	fmt.Println(a)
+type car[T gasEngine | electricEngine] struct {
+	make   string
+	model  string
+	engine T
 }
