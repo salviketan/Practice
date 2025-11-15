@@ -64,9 +64,11 @@ type purchaseInfo struct {
 }
 
 func loadJson[T contactInfo | purchaseInfo](filepath string) []T {
-	var data, _ = os.ReadFile(filepath)
+	var data, err = os.ReadFile(filepath)
 
-	fmt.Println(data)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	var loaded = []T{}
 
