@@ -126,4 +126,5 @@ if __name__ == "__main__":
     ll.remove_by_value("mango")
     ll.remove_by_value("apple")
     ll.remove_by_value("grapes")
+    print("emptied list- ",end=' ')
     ll.ll_print()
