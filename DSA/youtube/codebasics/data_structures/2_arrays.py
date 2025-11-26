@@ -7,7 +7,10 @@ print(f"1. {diff}")
 q1_expense = 0
 for i in months[:3]:
     q1_expense+= i
-print(f"2. {q1_expense}")
+# print(f"2. {q1_expense}")
+# Alternate version
+print(f"2. Alternative")
+print(f"2. {sum(months[:3])}")
 
 spent = 2000 in months
 print(f"3. {spent}")
