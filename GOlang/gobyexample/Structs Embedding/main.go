@@ -28,10 +28,10 @@ func main() {
 
 	fmt.Println("discribe:", co.discribe())
 
+	type discriber interface {
+		discribe() string
+	}
+
 	var d discriber = co
 	fmt.Printf("describer: %s", d.discribe())
-}
-
-type discriber interface {
-	discribe() string
 }
