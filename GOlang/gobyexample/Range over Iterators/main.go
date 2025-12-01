@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+	"iter"
+	"slices"
+)
+
 type List[T any] struct {
 	head, tail *element[T]
 }
@@ -9,11 +15,58 @@ type element[T any] struct {
 	val  T
 }
 
-func (lst *List[T]) AllElements() []T {
-	var elem []T
-
-	for e := lst.head; e != nil; e = e.next {
-		elem = append(elem, e.val)
+func (lst *List[T]) Push(v T) {
+	if lst.tail == nil {
+		lst.head = &element[T]{val: v}
+		lst.tail = lst.head
+	} else {
+		lst.tail.next = &element[T]{val: v}
+		lst.tail = lst.tail.next
 	}
-	return elem
+}
+
+func (lst *List[T]) iterAll() iter.Seq[T] {
+	return func(yeild func(T) bool) {
+		for e := lst.head; e != nil; e = e.next {
+			if !yeild(e.val) {
+				return
+			}
+		}
+	}
+}
+
+func genFib() iter.Seq[int] {
+	return func(yeild func(int) bool) {
+		a, b := 1, 1
+		for {
+			if !yeild(a) {
+				return
+			}
+			a, b = b, a+b
+		}
+	}
+}
+
+func main() {
+	lst := List[int]{}
+	lst.Push(10)
+	lst.Push(13)
+	lst.Push(23)
+
+	// Iterate using for loop and range
+	for e := range lst.iterAll() {
+		fmt.Println(e)
+	}
+
+	// Iterate using slices.Collect() method. Use slices package.
+	all := slices.Collect(lst.iterAll())
+	fmt.Println("all: ", all)
+
+	for n := range genFib() {
+		if n >= 10 {
+			break
+		}
+		fmt.Println(n)
+	}
+
 }
