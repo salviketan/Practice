@@ -53,6 +53,10 @@ func main() {
 	lst.Push(13)
 	lst.Push(23)
 
+	fmt.Println("lst obj: ", lst, &lst.head, &lst.tail, &lst.tail.next)
+
+	fmt.Println("iter obj: ", lst.iterAll())
+
 	// Iterate using for loop and range
 	for e := range lst.iterAll() {
 		fmt.Println(e)
