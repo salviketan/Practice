@@ -66,6 +66,13 @@ func main() {
 	all := slices.Collect(lst.iterAll())
 	fmt.Println("all: ", all)
 
+	// Iterate using iter.Pull() and next() method. We call next() to get next sequence in iterator.
+	all2 := lst.iterAll()
+	next, stop := iter.Pull(all2)
+	defer stop()
+	fmt.Println(next())
+	fmt.Println(next())
+
 	for n := range genFib() {
 		if n >= 10 {
 			break
