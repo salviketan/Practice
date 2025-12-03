@@ -28,7 +28,7 @@ func makeTea(arg int) error {
 	// if arg == 2 {
 	// 	return ErrOutOfTea
 	// } else if arg == 4 {
-	// 	return ErrPower
+	// 	return fmt.Errorf("making tea: %w", ErrPower)
 	// }
 
 	// return nil
