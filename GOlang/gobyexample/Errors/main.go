@@ -53,22 +53,22 @@ func main() {
 
 	for i := range 5 {
 		if e := makeTea(i); e != nil {
-			switch e {
-			case ErrOutOfTea:
-				fmt.Println("We should buy new tea!")
-			case ErrPower:
-				fmt.Println("Now it is dark.")
-			default:
-				fmt.Printf("unknown error %s\n", e)
-			}
-
-			// if errors.Is(e, ErrOutOfTea) {
+			// switch e {
+			// case ErrOutOfTea:
 			// 	fmt.Println("We should buy new tea!")
-			// } else if errors.Is(e, ErrPower) {
+			// case ErrPower:
 			// 	fmt.Println("Now it is dark.")
-			// } else {
+			// default:
 			// 	fmt.Printf("unknown error %s\n", e)
 			// }
+			// Or
+			if errors.Is(e, ErrOutOfTea) {
+				fmt.Println("We should buy new tea!")
+			} else if errors.Is(e, ErrPower) {
+				fmt.Println("Now it is dark.")
+			} else {
+				fmt.Printf("unknown error %s\n", e)
+			}
 
 			continue
 		}
