@@ -2,19 +2,28 @@ package main
 
 import "fmt"
 
-var message = make(chan string, 2)
+var messages2 = make(chan string, 2)
 
-func b() { message <- "b string" }
+func b() { messages2 <- "b string" }
 
 func main() {
 
-	go func() { message <- "a string" }()
+	messages1 := make(chan string, 2)
+
+	messages1 <- "buffered"
+	messages1 <- "channel"
+
+	fmt.Println(<-messages1)
+	fmt.Println(<-messages1)
+
+	// My code
+	go func() { messages2 <- "a string" }()
 
 	go b()
 
-	a := <-message
+	a := <-messages2
 
-	b := <-message
+	b := <-messages2
 
 	fmt.Println(a)
 	fmt.Println(b)
