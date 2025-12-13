@@ -1,6 +1,6 @@
 # MCMXCIV
 class Solution:
-    def romanToInt(self, s: str) -> int:
+    def myRomanToInt(self, s: str) -> int:
         buffer = ""
         int_val = 0
         roman_value_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
@@ -29,8 +29,31 @@ class Solution:
 
         # print(int_val)
         return int_val
+    
+    # Approach 1: Left-to-Right Pass
+    def romanToInt_3(self, s: str) -> int:
+        ...
+
+    # Approach 2: Left-to-Right Pass Improved
+    def romanToInt_3(self, s: str) -> int:
+        ...
+
+    # Approach 3: Right-to-Left pass
+    def romanToInt_3(self, s: str) -> int:
+        roman_values = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        inp_sum = roman_values[s[-1]]
+
+        for i in reversed(range(len(s)-1)):
+            print(s[i],":",roman_values[s[i]])
+            if roman_values[s[i]] < roman_values[s[i+1]]:
+                inp_sum -= roman_values[s[i]]
+            else:
+                inp_sum += roman_values[s[i]]
+        
+        return inp_sum
+
 if __name__ == "__main__":
     # inp_str = input("Enter string: ")
     inp_str = "MCMXCIV"
     result = Solution()
-    print(result.romanToInt(inp_str))
+    print(result.romanToInt_3(inp_str))
