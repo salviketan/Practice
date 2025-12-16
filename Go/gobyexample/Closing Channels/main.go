@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -24,6 +25,7 @@ func main() {
 	for i := 1; i <= 3; i++ {
 		jobs <- i
 		fmt.Println("Sent job: ", i)
+		time.Sleep(1 * time.Millisecond) //This line changes output execution
 	}
 	close(jobs)
 	fmt.Println("Sent all jobs")
