@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Multiple Return Values
 func vals() (int, int) {
 	return 3, 7
 }
