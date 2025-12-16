@@ -11,4 +11,6 @@ func main() {
 	for elem := range queue {
 		fmt.Println(elem)
 	}
+
+	fmt.Printf("queue channel: (%q), length: %d, capacity: %d\n", <-queue, len(queue), cap(queue))
 }
