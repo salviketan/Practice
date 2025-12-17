@@ -25,7 +25,7 @@ func main() {
 
 	time.Sleep(1600 * time.Millisecond)
 	ticker.Stop()
-	done <- true // comment this line to see Goroutine Leak/Zombie goroutines
+	done <- true // comment this line to see Goroutine Leak/Zombie goroutines.
 	fmt.Println("Ticker stopped")
 
 	fmt.Println("Goroutines at end:", runtime.NumGoroutine())
