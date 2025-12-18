@@ -26,7 +26,7 @@ func main() {
 	for j := 1; j <= numJobs; j++ {
 		jobs <- j
 	}
-	close(jobs)
+	close(jobs) //I'am forgetting to close the goroutine which cleansup resource gracefully.
 
 	for a := 1; a <= numJobs; a++ {
 		<-results
