@@ -1,4 +1,4 @@
-// go1.24.10
+// go1.25.5
 package main
 
 import (
@@ -17,11 +17,9 @@ func main() {
 	var wg sync.WaitGroup
 
 	for i := 1; i <= 5; i++ {
-		wg.Add(1)
-		go func() {
+		wg.Go(func() {
 			worker(i)
-			wg.Done()
-		}()
+		})
 	}
 
 	wg.Wait()
