@@ -16,6 +16,7 @@ func main() {
 	p("Join:      ", s.Join([]string{"a", "b"}, "-"))
 	p("Repeat:    ", s.Repeat("a", 5))
 	p("Replace:   ", s.Replace("foo", "o", "0", -1))
+	p("ReplaceAll:", s.ReplaceAll("foo", "o", "0"))
 	p("Replace:   ", s.Replace("foo", "o", "0", 1))
 	p("Split:     ", s.Split("a-b-c-d", "-"))
 	p("ToLower:   ", s.ToLower("TEST"))
