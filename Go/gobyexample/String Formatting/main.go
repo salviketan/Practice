@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 type point struct {
 	x, y int
@@ -40,4 +43,19 @@ func main() {
 	fmt.Printf("str3: %x\n", "hex this")
 
 	fmt.Printf("pointer: %p\n", &p)
+
+	fmt.Printf("width1: |%6d|%6d|\n", 12, 345)
+
+	fmt.Printf("width2: |%6.2f|%6.2f|\n", 1.2, 3.45)
+
+	fmt.Printf("width3: |%-6.2f|%-6.2f|\n", 1.2, 3.45)
+
+	fmt.Printf("width4: |%6s|%6s|\n", "s", "w")
+
+	fmt.Printf("width5: |%-6s|%-6s|\n", "foo", "b")
+
+	s := fmt.Sprintf("sprintf: a %s", "string")
+	fmt.Println(s)
+
+	fmt.Fprintf(os.Stderr, "io: an %s\n", "error")
 }
