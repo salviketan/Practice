@@ -49,4 +49,19 @@ func main() {
 	}
 	res2B, _ := json.Marshal(res2D)
 	fmt.Println(string(res2B))
+
+	byt := []byte(`{"num": 6.23, "str":["a","b"]}`)
+
+	var dat map[string]interface{}
+
+	if err := json.Unmarshal(byt, &dat); err != nil {
+		panic(err)
+	}
+
+	num := dat["num"].(float64)
+	fmt.Println(num)
+
+	strs := dat["str"].([]interface{})
+	str1 := strs[0].(string)
+	fmt.Println(str1)
 }
