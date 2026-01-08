@@ -81,4 +81,7 @@ func main() {
 	res1 := response2{}
 	dec.Decode(&res1)
 	fmt.Println(res1)
+
+	fmt.Printf("\nstr: %v, type: %T\n", str, str)
+	fmt.Printf("res1: %v, type: %T\n", res1, res1)
 }
