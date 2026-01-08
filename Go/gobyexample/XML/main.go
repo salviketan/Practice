@@ -8,12 +8,12 @@ import (
 type Plant struct {
 	XMLName xml.Name `xml:"plant"`
 	ID      int      `xml:"id,attr"`
-	Name    string   `xml:"Name"`
-	Origin  []string `xml:"Origin"`
+	Name    string   `xml:"name"`
+	Origin  []string `xml:"origin"`
 }
 
 func (p Plant) String() string {
-	return fmt.Sprintf("Plant class=%v, Name=%v, Origin=%v", p.ID, p.Name, p.Origin)
+	return fmt.Sprintf("Plant id=%v, name=%v, origin=%v", p.ID, p.Name, p.Origin)
 }
 
 func main() {
@@ -25,13 +25,13 @@ func main() {
 
 	fmt.Println(xml.Header + string(out))
 
-	var p *Plant
+	var p Plant
 	if err := xml.Unmarshal([]byte(out), &p); err != nil {
 		panic(err)
 	}
 	fmt.Println(p)
 
-	tomato := &Plant{ID: 27, Name: "tomato", Origin: []string{"Maxico", "Paris"}}
+	tomato := &Plant{ID: 27, Name: "Tomato", Origin: []string{"Maxico", "California"}}
 
 	type Nesting struct {
 		XMLName xml.Name `xml:"nesting"`
