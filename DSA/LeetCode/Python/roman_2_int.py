@@ -34,7 +34,11 @@ class Solution:
     
     # Approach 1: Left-to-Right Pass
     def romanToInt_1(self, s: str) -> int:
-        ...
+        total = 0
+
+        for i in range(len(s)+1):
+            ...
+            
 
     # Approach 2: Left-to-Right Pass Improved
     def romanToInt_2(self, s: str) -> int:
