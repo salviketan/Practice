@@ -35,9 +35,17 @@ class Solution:
     # Approach 1: Left-to-Right Pass
     def romanToInt_1(self, s: str) -> int:
         total = 0
-
-        for i in range(len(s)+1):
-            ...
+        idx = 0
+        while idx < len(s):
+            # print(total)
+            if idx < (len(s)-1) and roman_values[s[idx]] < roman_values[s[idx + 1]]:
+                total = total + (roman_values[s[idx + 1]] - roman_values[s[idx]])
+                idx += 2
+            else:
+                total += roman_values[s[idx]]
+                idx += 1
+            
+        return total
             
 
     # Approach 2: Left-to-Right Pass Improved
@@ -49,7 +57,7 @@ class Solution:
         inp_sum = roman_values[s[-1]]
 
         for i in reversed(range(len(s)-1)):
-            print(s[i],":",roman_values[s[i]])
+            # print(s[i],":",roman_values[s[i]])
             if roman_values[s[i]] < roman_values[s[i+1]]:
                 inp_sum -= roman_values[s[i]]
             else:
@@ -59,7 +67,9 @@ class Solution:
 
 if __name__ == "__main__":
     # inp_str = input("Enter string: ")
-    inp_str = "MCMXCIV"
+    # inp_str = "MCMXCIV"
+    inp_str = "LVIII"
     result = Solution()
     print(result.myRomanToInt(inp_str))
-    print(result.romanToInt_3(inp_str))
+    print("romanToInt_1",result.romanToInt_1(inp_str))
+    print("romanToInt_3",result.romanToInt_3(inp_str))
