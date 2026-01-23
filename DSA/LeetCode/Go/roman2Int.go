@@ -48,8 +48,8 @@ func romanToInt_2(s string) int {
 }
 
 // Approach 3: Right-to-Left pass
-func romanToInt_3(s string) {
-
+func romanToInt_3(s string) any {
+	return nil
 }
 
 func main() {
@@ -57,5 +57,5 @@ func main() {
 
 	fmt.Println("romanToInt_1: ", romanToInt_1(inp_str))
 	fmt.Println("romanToInt_2: ", romanToInt_2(inp_str))
-	// fmt.Println("romanToInt_1: ", romanToInt_3(inp_str))
+	fmt.Println("romanToInt_3: ", romanToInt_3(inp_str))
 }
