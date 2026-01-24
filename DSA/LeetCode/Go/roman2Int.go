@@ -48,8 +48,26 @@ func romanToInt_2(s string) int {
 }
 
 // Approach 3: Right-to-Left pass
-func romanToInt_3(s string) any {
-	return nil
+func romanToInt_3(s string) int {
+	values := map[rune]int{
+		'I': 1, 'V': 5, 'X': 10, 'L': 50,
+		'C': 100, 'D': 500, 'M': 1000,
+	}
+
+	total := 0
+	i := len(s) - 1
+
+	for i >= 0 {
+		if i > 0 && values[rune(s[i-1])] < values[rune(s[i])] {
+			total += values[rune(s[i])] - values[rune(s[i-1])]
+			i -= 2
+		} else {
+			total += values[rune(s[i])]
+			i -= 1
+		}
+	}
+
+	return total
 }
 
 func main() {
