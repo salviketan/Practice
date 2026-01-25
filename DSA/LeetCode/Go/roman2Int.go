@@ -35,12 +35,16 @@ func romanToInt_2(s string) int {
 	total := 0
 	i := 0
 	for i < len(s) {
-		if i < (len(s)-1) && value[string(s[i])] < value[string(s[i+1])] {
-			total += value[string(s[i:i+2])]
-			i += 2
-		} else {
+		if i < len(s)-1 {
+			substring := string(s[i : i+2])
+			val, ok := value[substring]
+			if ok {
+				total += val
+				i += 2
+				continue
+			}
 			total += value[string(s[i])]
-			i += 1
+			i++
 		}
 	}
 
