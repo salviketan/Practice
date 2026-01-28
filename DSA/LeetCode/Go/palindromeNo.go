@@ -16,6 +16,5 @@ func isPalindrome(x int) bool {
 }
 
 func main() {
-	fmt.Println("start")
 	fmt.Println(isPalindrome(121))
 }
