@@ -19,4 +19,6 @@ func main() {
 	}
 	p(t1)
 
+	p(t1.Format("03:04 PM"))
+
 }
