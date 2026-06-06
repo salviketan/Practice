@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("len u:", len(unique_string))
 
 	fmt.Println("rune count n:", utf8.RuneCountInString(norm_string))
-	fmt.Println("rune count u:", utf8.RuneCountInString(norm_string))
+	fmt.Println("rune count u:", utf8.RuneCountInString(unique_string))
 
 	fmt.Printf("\n---findChar---\n")
 	findChar(unique_string, '-')
