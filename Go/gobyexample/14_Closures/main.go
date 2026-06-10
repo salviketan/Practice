@@ -15,11 +15,13 @@ func main() {
 
 	nextInt := intSeq()
 
-	fmt.Println(nextInt())
-	fmt.Println(nextInt())
-	fmt.Println(nextInt())
+	fmt.Println("Closer 1: ",nextInt())
+	fmt.Println("Closer 1: ",nextInt())
+	fmt.Println("Closer 1: ",nextInt())
 
 	nextInts := intSeq()
-	fmt.Println(nextInts())
+	fmt.Println("Closer 2: ",nextInts())
+	fmt.Println("Closer 1: ",nextInt())
+	fmt.Println("Closer 2: ",nextInts())
 
 }
