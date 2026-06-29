@@ -25,4 +25,9 @@ func main() {
 	form := "3 04 PM"
 	t2, _ := time.Parse(form, "8 41 PM")
 	p(t2)
+
+	fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d\n", t.Year(),t.Month(),t.Day(),t.Hour(),t.Minute(),t.Second())
+
+	_, err := time.Parse("Mon Jan _2 15:04:05 2006", "8:41PM")
+	p(err)
 }
