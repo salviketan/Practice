@@ -24,7 +24,7 @@ func main() {
 	p(t.Format("2006-01-02T15:04:05.999999-07:00"))
 	form := "3 04 PM"
 	t2, _ := time.Parse(form, "8 41 PM")
-	p(t2)
+	p("t2",t2)
 
 	fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d\n", t.Year(),t.Month(),t.Day(),t.Hour(),t.Minute(),t.Second())
 
