@@ -25,6 +25,6 @@ func main() {
 
 	b := <-messages2
 
-	fmt.Println(a)
-	fmt.Println(b)
+	fmt.Println("a: ",a)
+	fmt.Println("b: ",b)
 }
