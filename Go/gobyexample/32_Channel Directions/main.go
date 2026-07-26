@@ -29,6 +29,6 @@ func main() {
 	go ping(pings, "passed msg")
 	go pong(pings, pongs)
 
-	fmt.Println(<-pongs)
-	fmt.Println("pongs:", pongs)
+	fmt.Println(<-pongs)	// Receive/print data from channel to std-output(terminal)
+	fmt.Println("pongs:", pongs)	//it will print memory addr where channel data is  stored. 
 }
