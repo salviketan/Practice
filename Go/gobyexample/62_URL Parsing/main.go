@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"net/url"
 )
 
@@ -22,5 +23,22 @@ func main()  {
 
     fmt.Println("User:",u.User)
     fmt.Println(u.User.Username())
+	p, _ := u.User.Password()
+	fmt.Println(p)
 
+	fmt.Println(u.Host)
+	host, port, _ := net.SplitHostPort(u.Host)
+	fmt.Println("derived from net.SplitHostPort(string) = Host:", host, "Port:", port)
+	fmt.Println("derived from obj.Hostname(): ", u.Hostname())
+	fmt.Println("derived from obj.Port(): ", u.Port())
+
+	fmt.Println(u.Path)
+	fmt.Println(u.Fragment)
+
+	fmt.Println(u.RawQuery)
+	m, _ := url.ParseQuery(u.RawQuery)
+	fmt.Println("derived from obj.ParseQuery(string): ", m)
+	fmt.Println("derived from obj.Query(): ",u.Query())
+	fmt.Println(m["k"])
+	fmt.Println(m["k"][0])
 }
