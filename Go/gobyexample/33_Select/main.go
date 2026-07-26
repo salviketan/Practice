@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	t0 := time.Now()
 	c1 := make(chan string, 1)
 	c2 := make(chan string, 1)
 
@@ -27,4 +28,5 @@ func main() {
 			fmt.Println("recieved: ", msg2)
 		}
 	}
+	fmt.Println(time.Since(t0))
 }
