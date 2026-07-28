@@ -23,5 +23,6 @@ func main() {
 	if stop {
 		fmt.Println("timer2 stopped")
 	}
-
+	
+	time.Sleep(2 * time.Second)
 }
