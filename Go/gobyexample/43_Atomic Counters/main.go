@@ -21,5 +21,5 @@ func main() {
 
 	wg.Wait()
 
-	fmt.Println("Loard:", ops.Load())
+	fmt.Println("Load:", ops.Load())
 }
