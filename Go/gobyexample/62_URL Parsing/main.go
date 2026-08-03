@@ -37,7 +37,7 @@ func main()  {
 
 	fmt.Println(u.RawQuery)
 	m, _ := url.ParseQuery(u.RawQuery)
-	fmt.Println("derived from obj.ParseQuery(string): ", m)
+	fmt.Println("derived from url.ParseQuery(string): ", m)
 	fmt.Println("derived from obj.Query(): ",u.Query())
 	fmt.Println(m["k"])
 	fmt.Println(m["k"][0])
