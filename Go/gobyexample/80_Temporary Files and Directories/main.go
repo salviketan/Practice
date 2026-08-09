@@ -32,6 +32,10 @@ func main()  {
 
 	defer os.RemoveAll(dname)
 
+	// f, err = os.CreateTemp(dname, "file1")
+	// check(err)
+	// fmt.Println("Temp file in dir:", f.Name())
+
 	fname := filepath.Join(dname, "file1")
 	err = os.WriteFile(fname, []byte{1,2}, 0666)
 	check(err)
