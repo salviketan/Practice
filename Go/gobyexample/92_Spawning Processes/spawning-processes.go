@@ -18,9 +18,9 @@ func main()  {
 
 	fmt.Println("> date")
 	fmt.Println(string(dateOut))
-
+	
+	// For go version 1.25+
 	_, err = exec.Command("date", "-x").Output()
-
 	if err != nil{
 		var execErr *exec.Error
 		var exitErr *exec.ExitError
@@ -33,6 +33,19 @@ func main()  {
 			panic(err)
 		}
 	}
+
+	// // For go version 1.26+
+    // _, err = exec.Command("date", "-x").Output()
+    // if err != nil {
+    //     if e, ok := errors.AsType[*exec.Error](err); ok {
+    //         fmt.Println("failed executing:", e)
+    //     } else if e, ok := errors.AsType[*exec.ExitError](err); ok {
+    //         exitCode := e.ExitCode()
+    //         fmt.Println("command exit rc =", exitCode)
+    //     } else {
+    //         panic(err)
+    //     }
+    // }
 
 	grepCmd := exec.Command("grep", "hello")
 
